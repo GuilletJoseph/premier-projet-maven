@@ -16,6 +16,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+    <mode>DEV</mode>
   </properties>
 
   <dependencies>
@@ -38,11 +39,24 @@
 
 <finalName>${project.artifactId}</finalName>
 
+   <resources>
+  <resource>
+  <directory>src/main/resources</directory>
+  <filtering>true</filtering>
+  </resource>
+  </resources>
+
+
+
+
+
+
+
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
-      
-        
+
+
        <plugin>
        <groupId>org.apache.maven.plugins</groupId>
   <artifactId>maven-jar-plugin</artifactId>
@@ -55,13 +69,13 @@
   </archive>
   </configuration>
   </plugin>
- 
-        
+
+
         <plugin>
         <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
-        </plugin>  
+        </plugin>
         <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
@@ -93,7 +107,29 @@
           <version>3.0.0</version>
         </plugin>
       </plugins>
-    </pluginManagement>  
-    
+    </pluginManagement>
+
   </build>
+
+
+  <profiles>
+    <profile>
+    <id>dev</id>
+    <activation>
+    <activeByDefault>true</activeByDefault>
+    </activation>
+    <properties>
+    <mode>DEV</mode>
+    </properties>
+    </profile>
+    <profile>
+    <id>prod</id>
+    <properties>
+    <mode>PROD</mode>
+    </properties>
+    </profile>
+    </profiles>
+
+
+
 </project>
